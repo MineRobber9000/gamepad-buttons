@@ -53,12 +53,12 @@ var rAFStop = window.mozCancelRequestAnimationFrame ||
 window.addEventListener("gamepadconnected", function() {
   var gp = navigator.getGamepads()[0];
   gamepadInfo.innerHTML = "Gamepad connected at index " + gp.index + ": " + gp.id + ". It has " + gp.buttons.length + " buttons and " + gp.axes.length + " axes.";
-  if (gp.id=="Nintendo Switch Controller") { // joycons are weird
+/*  if (gp.id=="Nintendo Switch Controller") { // joycons are weird
     up = 13;
     right = 16;
     down = 14;
     left = 15;
-  }
+  }*/
   gameLoop();
 });
 
@@ -77,45 +77,45 @@ function webkitGP() {
   var gp = navigator.webkitGetGamepads()[0];
   if(gp) {
     gamepadInfo.innerHTML = "Gamepad connected at index " + gp.index + ": " + gp.id + ". It has " + gp.buttons.length + " buttons and " + gp.axes.length + " axes.";
-    if (gp.id=="Nintendo Switch Controller") { // joycons are weird
+/*    if (gp.id=="Nintendo Switch Controller") { // joycons are weird
       up = 13;
       right = 16;
       down = 14;
       left = 15;
-    }
+    }*/
     gameLoop();
     clearInterval(interval);
   }
 }
 
-up = 0;
-right = 1;
-down = 2;
-right = 3;
+//up = 0;
+//right = 1;
+//down = 2;
+//right = 3;
 
 function gameLoop() {
   if(navigator.webkitGetGamepads) {
     var gp = navigator.webkitGetGamepads()[0];
 
-    if(gp.buttons[up] == 1) {
+    if(gp.buttons[13] == 1) {
       b--;
-    } else if(gp.buttons[right] == 1) {
+    } else if(gp.buttons[16] == 1) {
       a++;
-    } else if(gp.buttons[down] == 1) {
+    } else if(gp.buttons[14] == 1) {
       b++;
-    } else if(gp.buttons[left] == 1) {
+    } else if(gp.buttons[15] == 1) {
       a--;
     }
   } else {
     var gp = navigator.getGamepads()[0];
 
-    if(gp.buttons[up].value > 0 || gp.buttons[up].pressed == true) {
+    if(gp.buttons[13].value > 0 || gp.buttons[13].pressed == true) {
       b--;
-    } else if(gp.buttons[right].value > 0 || gp.buttons[right].pressed == true) {
+    } else if(gp.buttons[16].value > 0 || gp.buttons[16].pressed == true) {
       a++;
-    } else if(gp.buttons[down].value > 0 || gp.buttons[down].pressed == true) {
+    } else if(gp.buttons[14].value > 0 || gp.buttons[14].pressed == true) {
       b++;
-    } else if(gp.buttons[left].value > 0 || gp.buttons[left].pressed == true) {
+    } else if(gp.buttons[14].value > 0 || gp.buttons[14].pressed == true) {
       a--;
     }
   }
